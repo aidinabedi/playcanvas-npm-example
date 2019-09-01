@@ -2,8 +2,8 @@
   "name": "playcanvas-npm-test",
   "version": "1.0.0",
   "scripts": {
-    "start": "budo index.js:bundle.js --live",
-    "build": "browserify index.js > bundle.js"
+    "start": "budo index.ts:bundle.js --live -- -p [ tsify ]",
+    "build": "browserify index.ts -p [ tsify ] > bundle.js"
   },
   "devDependencies": {
     "browserify": "^16.5.0",
