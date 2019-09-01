@@ -4,5 +4,9 @@
   "scripts": {
     "start": "echo \"Error: no start specified\" && exit 1",
     "build": "echo \"Error: no build specified\" && exit 1"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.0",
+    "budo": "^11.6.3"
   }
 }
