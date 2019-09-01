@@ -1,9 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <title>playcanvas-npm-test</title>
-    </head>
-    <body>
-        <script src="bundle.js"></script>
-    </body>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+    <meta charset='utf-8'>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <style></style>
+    <title>playcanvas-npm-test</title>
+    <script src="playcanvas-stable.min.js"></script>
+    <script>
+        ASSET_PREFIX = "";
+        SCRIPT_PREFIX = "";
+        SCENE_PATH = "798649.json";
+        CONTEXT_OPTIONS = {
+            'antialias': true,
+            'alpha': false,
+            'preserveDrawingBuffer': false,
+            'preferWebGl2': true
+        };
+        SCRIPTS = [  ];
+        CONFIG_FILENAME = "config.json";
+        INPUT_SETTINGS = {
+            useKeyboard: true,
+            useMouse: true,
+            useGamepads: false,
+            useTouch: true
+        };
+        pc.script.legacy = false;
+        PRELOAD_MODULES = [
+        ];
+    </script>
+</head>
+<body>
+    <script src="__start__.js"></script>
+    <script src="__loading__.js"></script>
+</body>
 </html>
