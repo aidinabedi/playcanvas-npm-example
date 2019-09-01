@@ -1,4 +1,4 @@
-pc.script.createLoadingScreen(function (app) {
+export function createLoadingScreen(app, options) {
     var showSplash = function () {
         // splash wrapper
         var wrapper = document.createElement('div');
@@ -12,7 +12,7 @@ pc.script.createLoadingScreen(function (app) {
         splash.style.display = 'none';
 
         var logo = document.createElement('img');
-        logo.src = ASSET_PREFIX + 'logo.png';
+        logo.src = options.ASSET_PREFIX + 'logo.png';
         splash.appendChild(logo);
         logo.onload = function () {
             splash.style.display = 'block';
@@ -29,8 +29,8 @@ pc.script.createLoadingScreen(function (app) {
     };
 
     var hideSplash = function () {
-        var splash = document.getElementById('application-splash-wrapper');
-        splash.parentElement.removeChild(splash);
+        var splash = document.getElementById('application-splash-wrapper')!;
+        splash.parentElement!.removeChild(splash);
     };
 
     var setProgress = function (value) {
@@ -90,8 +90,8 @@ pc.script.createLoadingScreen(function (app) {
 
         var style = document.createElement('style');
         style.type = 'text/css';
-        if (style.styleSheet) {
-            style.styleSheet.cssText = css;
+        if ((style as any).styleSheet) {
+            (style as any).styleSheet.cssText = css;
         } else {
             style.appendChild(document.createTextNode(css));
         }
@@ -109,4 +109,4 @@ pc.script.createLoadingScreen(function (app) {
     });
     app.on('preload:progress', setProgress);
     app.on('start', hideSplash);
-});
+}

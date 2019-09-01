@@ -1,4 +1,4 @@
-var loadModules = function (modules, urlPrefix, doneCallback) {
+export function loadModules(modules, urlPrefix, doneCallback) {
 
     // check for wasm module support
     function wasmSupported() {
@@ -30,7 +30,7 @@ var loadModules = function (modules, urlPrefix, doneCallback) {
     function loadWasmModuleAsync(moduleName, jsUrl, binaryUrl, doneCallback) {
         loadScriptAsync(jsUrl, function () {
             window[moduleName + 'Lib'] = window[moduleName];
-            window[moduleName]({ locateFile: () => urlPrefix + binaryUrl }).then( function () {
+            (window[moduleName] as any)({ locateFile: () => urlPrefix + binaryUrl }).then( function () {
                 doneCallback();
             });
         });
@@ -39,7 +39,7 @@ var loadModules = function (modules, urlPrefix, doneCallback) {
     // load and initialize an asm.js module
     function loadAsmModuleAsync(moduleName, jsUrl, doneCallback) {
         return loadScriptAsync(jsUrl, function () {
-            window[moduleName] = window[moduleName]();
+            window[moduleName] = (window[moduleName] as any)();
             doneCallback();
         });
     }

@@ -1,4 +1,8 @@
-(function () {
+declare var pc: any;
+
+import {loadModules} from "./__modules__";
+
+export function startApplication(options) {
     var CANVAS_ID = 'application-canvas';
 
     var canvas, devices, app;
@@ -20,13 +24,13 @@
     var createInputDevices = function (canvas) {
         var devices = {
             elementInput: new pc.ElementInput(canvas, {
-                useMouse: INPUT_SETTINGS.useMouse,
-                useTouch: INPUT_SETTINGS.useTouch
+                useMouse: options.INPUT_SETTINGS.useMouse,
+                useTouch: options.INPUT_SETTINGS.useTouch
             }),
-            keyboard: INPUT_SETTINGS.useKeyboard ? new pc.Keyboard(window) : null,
-            mouse: INPUT_SETTINGS.useMouse ? new pc.Mouse(canvas) : null,
-            gamepads: INPUT_SETTINGS.useGamepads ? new pc.GamePads() : null,
-            touch: INPUT_SETTINGS.useTouch && pc.platform.touch ? new pc.TouchDevice(canvas) : null
+            keyboard: options.INPUT_SETTINGS.useKeyboard ? new pc.Keyboard(window) : null,
+            mouse: options.INPUT_SETTINGS.useMouse ? new pc.Mouse(canvas) : null,
+            gamepads: options.INPUT_SETTINGS.useGamepads ? new pc.GamePads() : null,
+            touch: options.INPUT_SETTINGS.useTouch && pc.platform.touch ? new pc.TouchDevice(canvas) : null
         };
 
         return devices;
@@ -49,7 +53,7 @@
 
         // append css to style
         if (document.head.querySelector) {
-            document.head.querySelector('style').innerHTML += css;
+            document.head.querySelector('style')!.innerHTML += css;
         }
     };
 
@@ -97,10 +101,10 @@
             mouse: devices.mouse,
             gamepads: devices.gamepads,
             touch: devices.touch,
-            graphicsDeviceOptions: window.CONTEXT_OPTIONS,
-            assetPrefix: window.ASSET_PREFIX || "",
-            scriptPrefix: window.SCRIPT_PREFIX || "",
-            scriptsOrder: window.SCRIPTS || []
+            graphicsDeviceOptions: options.CONTEXT_OPTIONS,
+            assetPrefix: options.ASSET_PREFIX || "",
+            scriptPrefix: options.SCRIPT_PREFIX || "",
+            scriptsOrder: options.SCRIPTS || []
         });
     } catch (e) {
         if (e instanceof pc.UnsupportedBrowserError) {
@@ -117,7 +121,7 @@
     }
 
     var configure = function () {
-        app.configure(CONFIG_FILENAME, function (err) {
+        app.configure(options.CONFIG_FILENAME, function (err) {
             if (err) {
                 console.error(err);
             }
@@ -137,7 +141,7 @@
                         console.error(err);
                     }
 
-                    app.loadScene(SCENE_PATH, function (err, scene) {
+                    app.loadScene(options.SCENE_PATH, function (err, scene) {
                         if (err) {
                             console.error(err);
                         }
@@ -149,10 +153,10 @@
         });
     };
 
-    if (PRELOAD_MODULES.length > 0) {
-        loadModules(PRELOAD_MODULES, ASSET_PREFIX, configure);
+    if (options.PRELOAD_MODULES.length > 0) {
+        loadModules(options.PRELOAD_MODULES, options.ASSET_PREFIX, configure);
     } else {
         configure();
     }
 
-})();
+}
