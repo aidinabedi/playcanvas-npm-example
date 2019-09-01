@@ -1,4 +1,4 @@
-declare var pc: any;
+import * as pc from "@aidinabedi/playcanvas";
 
 import {loadModules} from "./__modules__";
 
@@ -107,10 +107,10 @@ export function startApplication(options) {
             scriptsOrder: options.SCRIPTS || []
         });
     } catch (e) {
-        if (e instanceof pc.UnsupportedBrowserError) {
+        if (e.name == "UnsupportedBrowserError") {
             displayError('This page requires a browser that supports WebGL.<br/>' +
                     '<a href="http://get.webgl.org">Click here to find out more.</a>');
-        } else if (e instanceof pc.ContextCreationError) {
+        } else if (e.name == "ContextCreationError") {
             displayError("It doesn't appear your computer can support WebGL.<br/>" +
                     '<a href="http://get.webgl.org/troubleshooting/">Click here for more information.</a>');
         } else {

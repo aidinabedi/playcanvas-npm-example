@@ -1,6 +1,4 @@
-declare var pc: any;
-
-pc.script.legacy = false;
+import * as pc from "@aidinabedi/playcanvas";
 
 const options = {
     ASSET_PREFIX: "",

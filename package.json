@@ -10,5 +10,8 @@
     "budo": "^11.6.3",
     "tsify": "^4.0.1",
     "typescript": "^3.6.2"
+  },
+  "dependencies": {
+    "@aidinabedi/playcanvas": "^1.23.0-test1"
   }
 }
