@@ -1,4 +1,4 @@
-Simple test project that shows how PlayCanvas can be used as an npm package, which is typically how a modern developer creates sites for the browser.
+Simple project that shows how PlayCanvas can be used as an npm package, which is typically how a modern developer creates sites for the browser.
 
 To build simply run:
 ```
