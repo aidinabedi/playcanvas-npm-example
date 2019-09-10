@@ -1,4 +1,4 @@
-import * as pc from "@aidinabedi/playcanvas";
+import * as pc from "playcanvas";
 
 const options = {
     ASSET_PREFIX: "",

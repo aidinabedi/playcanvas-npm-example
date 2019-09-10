@@ -1,4 +1,4 @@
-import * as pc from "@aidinabedi/playcanvas";
+import * as pc from "playcanvas";
 
 import {loadModules} from "./__modules__";
 
